@@ -12,7 +12,7 @@ struct TransactionData{
 
 class Block {
 
-    private:
+    public:
         int index;
         size_t blockHash;
         size_t previousHash;
@@ -37,7 +37,8 @@ Block::Block(int idx, TransactionData td, size_t prevHash){
     index = idx;
     data = td;
     previousHash = prevHash;
-    blockHash = generateHash();
+    size_t hash = generateHash();
+    blockHash = hash;
 
 }
 
@@ -85,6 +86,8 @@ class Blockchain {
 
         bool isChainValid();
 
+        void seeChain();
+
         
 };
 
@@ -114,7 +117,17 @@ Block Blockchain::createGenesisBlock(){
 void Blockchain::addBlock(TransactionData td){
 
     int index = (int)chain.size() - 1;
-    Block newBlock(index, td, chain.back().getPreviousHash());
+    size_t prevHash;
+
+    std::vector<Block>::iterator it;
+    for(it = chain.begin(); it != chain.end(); ++it){
+
+        Block block = *it;
+        prevHash = block.blockHash;
+
+    }
+
+    Block newBlock(index, td, prevHash);
 
     chain.push_back(newBlock);
 
@@ -148,5 +161,28 @@ bool Blockchain::isChainValid(){
     }
 
     return true;
+
+}
+
+void Blockchain::seeChain(){
+    
+    for(int i = 0; i < 50; i++){
+        std::cout << "\n" << std::endl;
+    }
+
+    std::vector<Block>::iterator it;
+    for(it = chain.begin(); it != chain.end(); ++it){
+
+        Block block = *it;
+
+        std::cout << "Block: " << block.index << std::endl;
+        std::cout << "Hash: " << block.blockHash << std::endl; 
+        std::cout << "Quantity: " << block.data.quantity << std::endl;
+        std::cout << "Receiver: " << block.data.receiver << std::endl;
+        std::cout << "Sender: " << block.data.sender << std::endl;
+        std::cout << "Timestamp: " << block.data.timestamp << std::endl;
+        std::cout << "Prev. Hash: " << (size_t)block.previousHash << std::endl;
+        std::cout << "---------------------------------" << std::endl << std::endl;
+    }
 
 }

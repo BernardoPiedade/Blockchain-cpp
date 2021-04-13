@@ -34,22 +34,17 @@ void sendAlentCoin(){
 
 }
 
-void seeChain(){
+void see_Chain(){
 
-    for(size_t i = 0; i < AlentCoin.chain.size(); i++){
-        
-        std::cout << "Block: " << i << std::endl;
-        std::cout << "Quantity: " << AlentCoin.chain[i].data.quantity << std::endl;
-        std::cout << "Receiver: " << AlentCoin.chain[i].data.receiver << std::endl;
-        std::cout << "Sender: " << AlentCoin.chain[i].data.sender << std::endl;
-        std::cout << "Timestamp: " << AlentCoin.chain[i].data.timestamp << std::endl;
-        std::cout << "---------------------------------" << std::endl;
-
-    }
+    AlentCoin.seeChain();
 
 }
 
 int main(){
+
+    for(int i = 0; i < 50; i++){
+        std::cout << "\n" << std::endl;
+    }
 
     // Add first block data
     TransactionData td;
@@ -77,7 +72,7 @@ int main(){
                 break;
 
             case 2:
-                seeChain();
+                see_Chain();
                 break;
             
             case 0:
