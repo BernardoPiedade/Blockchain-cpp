@@ -42,11 +42,11 @@ void see_Chain(){
 
 int main(){
 
-    for(int i = 0; i < 50; i++){
+    for(size_t i = 0; i < 50; i++){
         std::cout << "\n" << std::endl;
     }
 
-    // Add first block data
+    // Add block data
     TransactionData td;
     time_t tdTime;
     td.quantity = 1;

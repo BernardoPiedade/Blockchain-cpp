@@ -88,7 +88,8 @@ class Blockchain {
 
         void seeChain();
 
-        
+	Block &editBlock;
+
 };
 
 Blockchain::Blockchain(){
@@ -166,7 +167,7 @@ bool Blockchain::isChainValid(){
 
 void Blockchain::seeChain(){
     
-    for(int i = 0; i < 50; i++){
+    for(size_t i = 0; i < 50; i++){
         std::cout << "\n" << std::endl;
     }
 
